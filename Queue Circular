@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <conio.h>
+#define size 5
+int CS[size];
+int front=0;
+int rear=0;
+int count=0;
+void insertCS() {
+	int data;
+	if(count==size) {
+		printf("\n Circular Queue is full");
+		
+	} else {
+		printf("\n Enter Data");
+		scanf("%d", &data);
+		CS[rear]=data;
+		rear=(rear+1)%size;
+		count++;
+		printf("\n Data inserted in circular Queue");
+	} 
+}
+void deletCS() {
+	if(count==0) {
+		printf("\n\n \t Circular Queue is Empty");
+	} else {
+		printf("\n DElete element from circular queue");
+		front=(front+1)%size;
+		count--;
+	}
+}
+void display() {
+	int i,j;
+	if(count ==0) {
+		printf("\n\t Circular Queue Empty");
+	} else {
+		printf("\n element in circular Queue");
+		i=count;
+		for(i=front;i  !=0;i--) {
+			printf("%d\t",CS[i]);
+			i=(i+1)%size;
+		}
+	}
+}
