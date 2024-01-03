@@ -1,0 +1,68 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct node {
+	int data;
+	struct node *left;
+	struct node *right;
+	
+};
+struct node *createnode(int value) {
+	struct node *newnode=(struct node*)malloc(sizeof(struct node));
+	newnode->data=value;
+	newnode->left=newnode->right=NULL;
+	return newnode;
+}
+struct node *insert(struct node *root,int value) {
+	if(root==NULL) {
+		return createnode(value);
+	}
+	if(value<root->data) {
+	root->left=insert(root->left,value);
+	} else if(value>root->data) {
+	 root->right=insert(root->right,value);
+	}
+	return root;
+}
+struct node *deletenode(struct node *root,int value){
+	
+}
+struct node *search(struct node *root,int value) {
+	
+}
+int main () {
+	struct node *root=NULL;
+	int choice,value;
+	while(1) {
+		printf("1.insert\n2.delete\n3.search\n4.exit\n");
+		printf("Enter a choice\n");
+		scanf("%d",&choice);
+		switch(choice) {
+			case 1:
+	printf("Enter value to insert:\n");
+	scanf("%d",&value);
+	root=insert(root,value);
+	break;
+	case 2:
+	printf("Enter value to delete:\n");
+	scanf("%d",&value);
+	root=deletenode(root,value);
+	break;
+	case 3:
+	printf("Enter value to search:\n");
+	scanf("%d",&value);
+	if(search(root,value) !=NULL){
+	printf("Value found in the tree\n");
+	} else {
+	printf("Value not fount in the tree\n");
+	 }
+ break;
+ case 4:
+	printf("Exiting....\n");
+	break;
+	default:
+	printf("Invalid Choice\n");			
+		}
+	}
+	return 0;
+}
+	
