@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct node {
+	int data;
+	struct node *left;
+	struct node *right;
+};
+struct node *createnode(int value) {
+	struct node *newnode=(struct node*)malloc(sizeof(struct node));
+	newnode->data=value;
+	newnode->left=newnode->right=NULL;
+	return newnode;
+}
+struct node *insert(struct node *root,int value) {
+	if(root==NULL) {
+		return createnode(value);
+	}
+	if(value<root->data) {
+	root->left=insert(root->left,value);
+	} else if(value>root->data) {
+	 root->right=insert(root->right,value);
+	}
+	return root;
+}
+void inordertraversal(struct node *root) {
+	if(root !=NULL) {
+		inordertraversal(root->left);
+		printf("%d ",root->data);
+		inordertraversal(root->right);
+	}
+}
+void preordertraversal(struct node *root) {
+	if(root !=NULL) {
+		printf("%d ",root->data);
+		preordertraversal(root->left );
+		preordertraversal(root->right);
+	}
+}
+void postordertraversal(struct node *root) {
+	if(root !=NULL) {
+		postordertraversal(root->left );
+		postordertraversal(root->right);
+		printf("%d ",root->data);
+	}
+}
+int main () {
+struct Node* root = NULL;
+    int n, value, choice;
+
+    printf("Enter the number of nodes: ");
+    scanf("%d", &n);
+
+    printf("Enter the values of the nodes: ");
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &value);
+        root = insert(root, value);
+    }
+	printf("Enter your choice\n");
+	scanf("%d",&choice);
+	switch(choice){
+		case 1:
+			printf("Inorder Traversal: ");
+			inordertraversal(root);
+			break;
+			case 2:
+            printf("Preorder Traversal: ");
+            preordertraversal(root);
+            break;
+        case 3:
+            printf("Postorder Traversal: ");
+            postordertraversal(root);
+            break;
+        default:
+            printf("Invalid choice!");
+	}
+	return 0;
+}
